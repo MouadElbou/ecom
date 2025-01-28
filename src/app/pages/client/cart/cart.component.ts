@@ -4,9 +4,9 @@ import { NzInputNumberModule } from 'ng-zorro-antd/input-number';
 import { NzButtonModule } from 'ng-zorro-antd/button';
 import { NzMessageModule } from 'ng-zorro-antd/message';
 import { FormsModule } from '@angular/forms';
-import { CartItem } from '../../../interfaces/cart.interface';
+import { CartItem } from '../../../../interfaces/cart.interface';
 import { Observable } from 'rxjs/internal/Observable';
-import { CartService } from '../../services/cart.service';
+import { CartService } from '../../../services/cart.service';
 
 @Component({
   selector: 'app-cart',

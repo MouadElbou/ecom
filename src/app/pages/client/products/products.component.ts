@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { ProductCardComponent } from '../../components/product-card/product-card.component'; 
+import { ProductCardComponent } from '../../../components/product-card/product-card.component'; 
 import { NzSelectModule } from 'ng-zorro-antd/select';
 import { NzSliderModule } from 'ng-zorro-antd/slider';
 import { NzSkeletonModule } from 'ng-zorro-antd/skeleton';

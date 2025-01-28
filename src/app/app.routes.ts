@@ -1,25 +1,59 @@
 import { Routes } from '@angular/router';
+import { RoleGuard } from './guards/role.guard';
 
 export const routes: Routes = [
   {
     path: '',
-    loadComponent: () => import('./pages/home/home.component').then(m => m.HomeComponent)  },
-  {
-    path: 'products',
-    loadComponent: () => import('./pages/products/products.component').then(m => m.ProductsComponent)  },
-  {
-    path: 'cart',
-    loadComponent: () => import('./pages/cart/cart.component').then(m => m.CartComponent)
+    redirectTo: 'supplier/dashboard',
+    pathMatch: 'full'
   },
   {
-    path: 'checkout',
-    loadComponent: () => import('./pages/checkout/checkout.component').then(m => m.CheckoutComponent)
+   path: 'login',
+    loadComponent: () => import('./pages/auth/login/login.component').then(m => m.AuthComponent)
   },
+  // Supplier Routes
   {
-    path: 'product-designer',
-    loadComponent: () => import('./pages/product-designer/product-designer.component')
-      .then(m => m.ProductDesignerComponent)
-  }
+    path: 'supplier',
+   // canActivate: [RoleGuard],
+   // data: { role: 'SUPPLIER' },
+    children: [
+      {
+        path: 'dashboard',
+        loadComponent: () => import('./pages/supplier/dashboard/dashboard.component')
+          .then(m => m.DashboardComponent)
+      },
+      {
+        path: 'offers',
+        loadComponent: () => import('./pages/supplier/offer-management/offer-management.component')
+          .then(m => m.OfferManagementComponent)
+      }
+    ]
+  },
+  // Client Routes
+  {
+    path: 'client',
+    canActivate: [RoleGuard],
+    data: { role: 'CLIENT' },
+    children: [
+      {
+        path: 'marketplace',
+        loadComponent: () => import('./pages/client/products/products.component')
+          .then(m => m.ProductsComponent)
+      },
+  // {
+  //   path: 'orders',
+  //   loadComponent: () => import('./pages/client/orders/orders.component')
+  //     .then(m => m.OrdersComponent)
+  // },
+      {
+        path: 'cart',
+        loadComponent: () => import('./pages/client/cart/cart.component')
+          .then(m => m.CartComponent)
+      }
+    ]
+  },
+ //{
+  //  path: '**',
+  //  redirectTo: 'login'
+ // }
 ];
-
-
